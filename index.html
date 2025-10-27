@@ -3,73 +3,126 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Joker Tennis</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+  <title>Tennis Telegram Channel</title>
+
   <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background: #0a0a0a;
-      color: white;
-      font-family: 'Inter', sans-serif;
-      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
+      align-items: center;
+      text-align: center;
+      background: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
+      color: #fff;
     }
-    .subscriber-counter {
-      font-size: 1.5rem;
+
+    /* Overlay for better glow contrast */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    /* Profile DP */
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #00ffcc;
+      box-shadow: 0 0 20px #00ffcc;
+      margin: 0 auto 20px;
+      background: url('https://cdn-icons-png.flaticon.com/512/3003/3003035.png') no-repeat center/cover;
+    }
+
+    /* Title */
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #00ffcc;
+      text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
+      margin-bottom: 10px;
+    }
+
+    /* Tagline */
+    .tagline {
+      font-size: 1rem;
+      color: #fff;
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 30px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: block;
+      width: 100%;
+      max-width: 280px;
+      margin: 10px auto;
+      padding: 12px 20px;
+      border: 2px solid #00ffff;
+      border-radius: 30px;
+      font-size: 1rem;
       font-weight: 600;
-      color: #10b981;
-      margin-top: 0.25rem;
+      text-decoration: none;
+      color: #00ffff;
+      background: transparent;
+      box-shadow: 0 0 20px #00ffff;
+      transition: all 0.3s ease;
     }
-    .cta-btn {
-      background: linear-gradient(90deg, #06b6d4, #3b82f6);
-      color: white;
-      padding: 0.8rem 2rem;
-      border-radius: 9999px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-top: 1.2rem;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+
+    .btn:hover {
+      background: #00ffff;
+      color: #000;
+      box-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff;
     }
-    .cta-btn:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
+
+    .note {
+      margin-top: 25px;
+      font-size: 0.9rem;
+      color: #ccc;
+      text-shadow: 0 0 8px #00ffff;
+    }
+
+    @media (min-width: 1080px) {
+      body {
+        height: 1080px;
+        width: 1920px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="flex flex-col items-center">
-    <!-- Channel DP -->
-    <img src="your-dp.webp" alt="Joker Tennis DP" width="120" height="120" class="rounded-full mb-4 shadow-lg">
+  <div class="container">
+    <div class="profile-pic"></div>
+    <h1>TENNIS INSIDER</h1>
+    <p class="tagline">Smash Every Bet – Exclusive Tennis Insights 🎾</p>
 
-    <!-- Channel Heading -->
-    <h1 class="text-3xl font-bold text-white">🎾 Joker Tennis</h1>
+    <button class="btn">Free Joining Ends Soon</button>
+    <a href="https://t.me/YOUR_TELEGRAM_LINK" class="btn" target="_blank">Join My Telegram</a>
 
-    <!-- Subscriber Counter -->
-    <div class="subscriber-counter" id="subscriberCount">43,989</div>
-
-    <!-- Tagline -->
-    <p class="text-gray-300 text-lg mt-2">All Tennis Matches Reports Here.</p>
-
-    <!-- CTA Button -->
-    <a href="https://t.me/yourchannel" class="cta-btn">Join My Free Telegram Channel</a>
-
-    <!-- Bottom Line -->
-    <p class="text-gray-400 text-sm mt-6">Sabse Genuine and Accurate Kaam Milega Yaha par.</p>
+    <p class="note">Made with ❤️ by Team Tennis Insider</p>
   </div>
-
-  <script>
-    let count = 43989;
-    const counterEl = document.getElementById('subscriberCount');
-
-    function updateCount() {
-      count++;
-      counterEl.textContent = count.toLocaleString();
-    }
-
-    setInterval(updateCount, 1000);
-  </script>
 </body>
 </html>
