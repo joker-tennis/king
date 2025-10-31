@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tennis Telegram Channel</title>
+  <title>Tennis Insider | Telegram Channel</title>
 
   <style>
     * {
@@ -70,22 +70,31 @@
       margin-bottom: 10px;
     }
 
-    /* ✅ Subscriber Count Animation */
+    /* Subscriber Count */
     .subscriber-count {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      font-weight: 400;
       color: #00ffcc;
-      font-weight: 600;
-      text-shadow: 0 0 12px #00ffcc, 0 0 24px #00ffff;
+      text-shadow: 0 0 8px #00ffcc, 0 0 16px #00ffff;
       margin-bottom: 25px;
+      transition: all 0.2s ease;
     }
 
-    /* ✅ Replaced “Free Joining Ends Soon” button with glowing text */
+    .pulse {
+      animation: slowPulse 2s infinite;
+    }
+
+    @keyframes slowPulse {
+      0%, 100% { text-shadow: 0 0 8px #00ffcc, 0 0 16px #00ffff; }
+      50% { text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffff; }
+    }
+
+    /* Free joining text */
     .join-free-text {
       font-size: 1rem;
       color: #ff0099;
       text-shadow: 0 0 10px #ff0099, 0 0 20px #ff66cc;
-      font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       animation: glowPulse 1.5s ease-in-out infinite alternate;
     }
 
@@ -94,7 +103,32 @@
       to { text-shadow: 0 0 20px #ff0099, 0 0 40px #ff66cc; }
     }
 
-    /* Join Telegram Button */
+    /* Progress Bar */
+    .progress-bar {
+      width: 80%;
+      height: 8px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      margin: 0 auto 25px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #ff66cc;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff0099, #ff66cc, #00ffff);
+      box-shadow: 0 0 15px #ff66cc, 0 0 25px #00ffff;
+      border-radius: 10px;
+      animation: fillBar 20s linear forwards;
+    }
+
+    @keyframes fillBar {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    /* Telegram Button */
     .btn {
       display: block;
       width: 100%;
@@ -104,7 +138,7 @@
       border: 2px solid #00ffff;
       border-radius: 30px;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 500;
       text-decoration: none;
       color: #00ffff;
       background: transparent;
@@ -139,26 +173,40 @@
     <h1>TENNIS INSIDER</h1>
     <p class="tagline">Smash Every Bet – Exclusive Tennis Insights 🎾</p>
 
-    <!-- ✅ Live Subscriber Counter -->
-    <div class="subscriber-count" id="subscriberCount">Subscribers: 12,359</div>
+    <!-- ✅ Animated Subscriber Counter -->
+    <div class="subscriber-count" id="subscriberCount">12,359 subscribers</div>
 
-    <!-- ✅ Free Joining Text -->
+    <!-- ✅ Free Joining Text + Progress Bar -->
     <div class="join-free-text">Free Joining Ends Soon!</div>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
 
+    <!-- ✅ Telegram Join Button -->
     <a href="https://t.me/YOUR_TELEGRAM_LINK" class="btn" target="_blank">Join My Telegram</a>
 
     <p class="note">Made with ❤️ by Team Tennis Insider</p>
   </div>
 
   <script>
-    // ✅ Subscriber Counter Animation
+    // Smooth Subscriber Counter Animation
     let count = 12359;
+    const target = 12845;
     const counter = document.getElementById("subscriberCount");
 
-    setInterval(() => {
-      count += 4; // increases 4 subscribers per second
-      counter.textContent = "Subscribers: " + count.toLocaleString();
-    }, 1000);
+    function animateSubscribers() {
+      if (count < target) {
+        const increment = Math.random() * 0.25;
+        count += increment;
+        counter.textContent = `${Math.floor(count).toLocaleString()} subscribers`;
+        requestAnimationFrame(animateSubscribers);
+      } else {
+        counter.textContent = `${target.toLocaleString()} subscribers`;
+        counter.classList.add("pulse");
+      }
+    }
+
+    animateSubscribers();
   </script>
 </body>
 </html>
